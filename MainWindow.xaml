@@ -127,10 +127,40 @@
                 <RowDefinition Height="400"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            
-        
-        
-             
+
+
+
+            <Grid Grid.Row="2" Margin="18 0" VerticalAlignment="Center">
+                <Border CornerRadius="10" Background="White" Height="400" VerticalAlignment="Top">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" Color="Gray" ShadowDepth="0"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock Margin="10" Text=" Welcome..." FontSize="30" FontWeight="Bold" FontFamily="Arial Unicode MS" Foreground="LightGray"/>
+                        <TextBox Margin="10 5" 
+                                      x:Name="LoginBox"
+                                      materialDesign:HintAssist.Hint="Enter _ Login"
+                                      Foreground="Black"
+                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                        <PasswordBox
+                                  x:Name="PasBox"
+                                  Margin="10 5" 
+                                  materialDesign:HintAssist.Hint="Enter _ Password"
+                                  Foreground="Black"
+                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+
+                        <Border x:Name="sdf" Height="30" Width="83" Margin="20" BorderThickness="2" BorderBrush="LightGray" CornerRadius="2">
+                            <Button x:Name="Enter"
+                                     Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                                     ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                                     Content="ButtoN" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Enter_Click"></Button>
+                        </Border>
+                    </StackPanel>
+
+
+                </Border>
+            </Grid>
 
             <StackPanel Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                 <TextBlock Text="created by KrolliK: v. 1.0.1 " 
