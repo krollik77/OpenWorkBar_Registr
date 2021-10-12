@@ -30,5 +30,20 @@ namespace OpenWorkBar_Registr
             System.Windows.Application.Current.Shutdown();
 
         }
+
+        // метод который скрывает  текст Пароля
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (BoxPass.Password.Length > 0)
+            {
+                WaterMark.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                WaterMark.Visibility = Visibility.Visible;
+            }
+
+        }
     }
+
 }

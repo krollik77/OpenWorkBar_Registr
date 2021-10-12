@@ -166,6 +166,64 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Стиль для PassBox1 при котором будет прятаться символы под кружочками -->
+        <Style x:Key="PassBox1" TargetType="PasswordBox">
+
+            <Setter Property="Background" Value="#FF273142"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderBrush" Value="Azure"/>
+            <Setter Property="Padding" Value="10 0 0 0"/>
+            <EventSetter Event="PasswordChanged" Handler="PasswordBox_PasswordChanged"/>
+            <!-- функция для обработки эвента в коде-->
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="True">
+                            <Border x:Name="BackGround" BorderThickness="1" CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          BorderThickness="0"
+                                          Padding="{TemplateBinding Padding}"
+                                          IsTabStop="False"
+                                          Background="{x:Null}"
+                                          TextElement.Foreground="{TemplateBinding Foreground}"/>
+
+                        </Grid>
+
+
+                        <ControlTemplate.Triggers>
+                            <!-- Триггер для изменения цвета кнопки при наведении
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF2E3B4F"/>
+                                <Setter Property="Foreground" Value="LightGray"/>
+                            </Trigger>
+                            Триггер для изменения цвета кнопки при нажатии
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF2E3B4F"/>
+                                <Setter Property="Background" Value="LightGray"/>
+                            </Trigger -->
+
+                            <!-- Триггер для изменения цвета кнопки при наведении-->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="Red"/>
+
+                            </Trigger>
+                            <!-- Триггер для изменения цвета кнопки при нажатии-->
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="Background" Value="#FF2E3B4F"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
     </Window.Resources>
 
 
@@ -274,29 +332,29 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-                <!--// поле для ввода пароля //-->
-                <TextBox x:Name="BoxPass"
-                         Grid.Row="2" Style="{StaticResource TextBox1}" 
-                         VerticalAlignment="Top"
-                         Margin=" 15 100 15 0"/>
-                    <TextBlock IsHitTestVisible="False" FontSize="14" Text="Enter Password" Grid.Row="2" Margin="27 108 0 0">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="#FFE2E2E2" Opacity="0.3"/>
-                        </TextBlock.Foreground>
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName = BoxPass}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                <!--// поле для ввода пароля для проверки надо писать код на С //-->
+                <PasswordBox x:Name="BoxPass"
+                 Grid.Row="2" Style="{StaticResource PassBox1}" 
+                 VerticalAlignment="Top"
+                 Margin=" 15 100 15 0"/>
+                <TextBlock Name="WaterMark"  IsHitTestVisible="False" FontSize="14" Text="Enter Password" Grid.Row="2" Margin="27 108 0 0" VerticalAlignment="Top" Foreground="#FFE2E2E2" Opacity="0.3">
 
-               
-                
+                </TextBlock>
+                <!--// поле для ввода пароля 
+        это код на С ///  private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (BoxPass.Password.Length > 0)
+            {
+                WaterMark.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                WaterMark.Visibility = Visibility.Visible;
+            }
+        } //-->
+
+
+
                 <Border Name="Enter" Grid.Row="2" Height="25" Margin="15 42 15 0" 
                   BorderThickness="2" Background="#FFB3DFFB">
 
@@ -318,6 +376,8 @@
 
 
                
+                
+                
                 
                 
                 
