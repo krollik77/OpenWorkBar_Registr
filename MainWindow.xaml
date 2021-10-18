@@ -221,10 +221,53 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+         </Style>
+<!-- Стиль для кнопки Логин -->
+        <Style
+            x:Key="PrimaryButton" TargetType="{x:Type Button}">
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Background" Value="#FF01A3ff"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            x:Name="BorderLogin"
+                            Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="2"
+                            CornerRadius="4">
+                            <ContentPresenter
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                TextBlock.Foreground="{TemplateBinding Foreground}"/>
 
-
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BorderLogin" Property="Background"
+                                        Value="#80D0FF"/>
+                                <Setter Property="BorderBrush" Value="#80D0FF"/>
+                            </Trigger>
+                            <!-- Триггер остаеться в Фокусе при нажатии мышки на цвета кнопки -->
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF01A3ff"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+ <!-- Стиль для кнопки Логин -->
+        
+        
+
+        
+
     </Window.Resources>
+    
 
 
     <Grid>
@@ -275,7 +318,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="400"/>
+                <RowDefinition Height="400"/> <!-- This register -->
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
@@ -309,7 +352,21 @@
                         </Border>
                     </StackPanel>-->
                 </Border>
-                
+
+                <TextBlock
+                    VerticalAlignment="Top"
+                    FontSize="30"
+                    Margin="15 0">
+                    <Run
+                        FontWeight="SemiBold"
+                        Foreground="DarkGray"
+                        Text="Hello, "/><Run
+                        Text="Andrey!"
+                        Foreground="#FF01A3ff"
+                        FontWeight="Bold"
+                        x:Name="Hello"/>
+
+                </TextBlock>
                 
                 <!--// поле для ввода Логина //-->
                
@@ -353,43 +410,115 @@
             }
         } //-->
 
-
-
-                <Border Name="Enter" Grid.Row="2" Height="25" Margin="15 42 15 0" 
-                  BorderThickness="2" Background="#FFB3DFFB">
-
-
-                   
-                        
-                    
-                </Border>
-
+                <!-- Стиль для кнопки Логин -->
+                <Button Name="Login" Grid.Row="2" 
+                        Content="Login"
+                        Height="25" Margin="10 42 10 0" 
+                        Style="{StaticResource PrimaryButton}"/>
                 
-                
-                
+                 
                 <!--// разделительная черта //-->
                          <Polygon Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Stroke="Black"
                           Points="0 0 270 0" Margin="25 0 25 140"/>
-                         <TextBlock Text=" или Авторизуйся" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"
-                                FontSize="13" TextAlignment="Center" Margin="0 0 0 133" Background="White" Width="130"/>
+                         <TextBlock Text="или Зарегистрируйся" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"
+                                FontSize="11" TextAlignment="Center" Margin="0 0 0 133" Background="White" Width="115"/>
                 <!--// разделительная черта //-->
 
 
-               
+
+
+                <!-- Стиль для кнопки Регистрация -->
+                <Button Name="Primary" Grid.Row="2" 
+                        Content="Регистрация"
+                        Height="25" Margin="10 200 10 0" 
+                        Style="{StaticResource PrimaryButton}"/>
                 
                 
-                
-                
-                
-                
-                <Border Name="Enter2" Grid.Row="2" Height="25" Margin="15 200 15 0" 
-                  BorderThickness="2" Background="#FFB3DFFB" VerticalAlignment="Center">
+                <!-- Стиль для текста под кнопкой Регистрация -->
+                <Grid Width="auto" Height="20" Margin="10 255 10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                <!-- Нижний текст левый -->
+                    <TextBlock x:Name="TextForgotPass"
+                        VerticalAlignment="Center"
+                               HorizontalAlignment="Center" 
+                               Grid.Column="0"
+                               Text="Забили пароль?"
+                               FontSize="9"
+                              
+                               FontWeight="DemiBold">
+                        
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="#FF078Ac9"/>
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="Red" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="#FF078Ac9" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        
+                    </TextBlock>
+                        
+                <!-- Нижний текст Правый -->
+                    <TextBlock x:Name="TextEnterErr"
+                        VerticalAlignment="Center"
+                               HorizontalAlignment="Center" 
+                               Grid.Column="2"
+                               Text="Не можете Войти?"
+                               FontSize="9"
+                              
+                               FontWeight="DemiBold">
+
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="#FF078Ac9"/>
+                                <Style.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="Red" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="Foreground.Color" To="#FF078Ac9" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+
+                    </TextBlock>
+                <!-- Нижний текст Правый -->
+                      
+
+                    
+                </Grid>
 
 
 
 
-
-                </Border>
+                
 
             </Grid>
 
