@@ -391,28 +391,33 @@
                     </TextBlock>
                 <!--// поле для ввода пароля для проверки надо писать код на С //-->
                 <PasswordBox x:Name="BoxPass"
-                 Grid.Row="2" Style="{StaticResource PassBox1}" 
-                 VerticalAlignment="Top"
-                 Margin=" 15 100 15 0"/>
-                <TextBlock Name="WaterMark"  IsHitTestVisible="False" FontSize="14" Text="Enter Password" Grid.Row="2" Margin="27 108 0 0" VerticalAlignment="Top" Foreground="#FFE2E2E2" Opacity="0.3">
+                             Grid.Row="2" Style="{StaticResource PassBox1}" 
+                             VerticalAlignment="Top"
+                             Margin=" 15 100 15 0"/>
+                <TextBlock Name="WaterMark"  
+                           IsHitTestVisible="False" 
+                           FontSize="14" 
+                           Text="Enter Password" 
+                           Grid.Row="2" Margin="27 108 0 0" 
+                           VerticalAlignment="Top" 
+                           Foreground="#FFE2E2E2" Opacity="0.3"/>
 
-                </TextBlock>
                 <!--// поле для ввода пароля 
-        это код на С ///  private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (BoxPass.Password.Length > 0)
-            {
-                WaterMark.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                WaterMark.Visibility = Visibility.Visible;
-            }
-        } //-->
+                                 это код на С ///  private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+                                 {
+                                     if (BoxPass.Password.Length > 0)
+                                     {
+                                         WaterMark.Visibility = Visibility.Collapsed;
+                                     }
+                                     else
+                                     {
+                                         WaterMark.Visibility = Visibility.Visible;
+                                     }
+                                 } //-->
 
                 <!-- Стиль для кнопки Логин -->
-                <Button Name="Login" Grid.Row="2" 
-                        Content="Login"
+                <Button Name="EnterBtn" Grid.Row="2" 
+                        Content="Войти"
                         Height="25" Margin="10 42 10 0" 
                         Style="{StaticResource PrimaryButton}"/>
                 
@@ -428,7 +433,7 @@
 
 
                 <!-- Стиль для кнопки Регистрация -->
-                <Button Name="Primary" Grid.Row="2" 
+                <Button Name="PrimaryBtn" Grid.Row="2" 
                         Content="Регистрация"
                         Height="25" Margin="10 200 10 0" 
                         Style="{StaticResource PrimaryButton}"/>
